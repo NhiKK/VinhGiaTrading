@@ -1,0 +1,384 @@
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95
+System.UriFormatException: Invalid URI: The format of the URI could not be determined.
+   at System.Uri.CreateThis(String uri, Boolean dontEscape, UriKind uriKind)
+   at System.Uri..ctor(String uriString)
+   at WindowsService1.Service1.WriteToFile(String Message) in D:\ANCO\Soft\WindowsService1\Service1.cs:line 95

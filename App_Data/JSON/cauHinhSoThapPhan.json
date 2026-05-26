@@ -1,0 +1,77 @@
+[
+  {
+    "name": "InPO",
+    "text": "In Đơn hàng",
+    "fontSize": [
+      {
+        "excel": "12",
+        "pdf": "15"
+      }
+    ],
+    "soThapPhan": [
+      {
+        "soluong": "#,#",
+        "cbm": "#,#0.000",
+        "fob": "#,#0.00",
+        "amount": "#,#0.00",
+        "discount": "#,#0.000000"
+      }
+    ]
+  },
+  {
+    "name": "InPI",
+    "text": "In Đơn đặt hàng",
+    "fontSize": [
+      {
+        "excel": "12",
+        "pdf": "15.5"
+      }
+    ],
+    "soThapPhan": [
+      {
+        "soluong": "#,#",
+        "cbm": "#,#0.000",
+        "fob": "#,#0.00",
+        "amount": "#,#0.00",
+        "discount": "#,#0.0000",
+        "dtkd": [
+          {
+            "name": "VINHGIA",
+            "discount": "#,#0.000000",
+            "amount": "#,#0.00",
+            "soluong": "#,#",
+            "cbm": "#,#0.00"
+          },
+          {
+            "name": "ANCO1",
+            "discount": "#,#0.00",
+            "amount": "#,#",
+            "soluong": "#,#",
+            "cbm": "#,#0.00"
+          },
+          {
+            "name": "ANCO2",
+            "discount": "#,#0.00",
+            "amount": "#,#",
+            "soluong": "#,#",
+            "cbm": "#,#0.00"
+          },
+          {
+            "name": "ANBINH",
+            "discount": "#,#0.00",
+            "amount": "#,#",
+            "soluong": "#,#",
+            "cbm": "#,#0.00"
+          },
+          {
+            "name": "TITAN",
+            "discount": "#,#0.00",
+            "amount": "#,#",
+            "soluong": "#,#",
+            "cbm": "#,#0.00"
+          }
+        ]
+      }
+    ]
+  }
+]

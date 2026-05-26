@@ -1,0 +1,641 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.IO;
+using NPOI.HSSF.UserModel;
+using NPOI.HPSF;
+using NPOI.POIFS.FileSystem;
+using NPOI.SS.UserModel;
+using NPOI.SS.Util;
+using System.Data;
+using HSSFUtils;
+using NPOI.HSSF;
+using NPOI.HSSF.Util;
+using NPOI.DDF;
+using NPOI.HSSF.Model;
+using NPOI.HSSF.Record;
+using NPOI.HSSF.Record.Aggregates;
+using NPOI.HSSF.Record.AutoFilter;
+public partial class PrintControllers_PackingList_Default : System.Web.UI.Page
+{
+    public LinqDBDataContext db = new LinqDBDataContext();
+    private String fmt0 = "#,##0", fmt0i0 = "#,##0.0", fmt0i00 = "#,##0.00", fmt0i000 = "#,##0.000";
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        //try
+        {
+            String c_donhang_id = Request.QueryString["c_donhang_id"];
+            //-kiem tra co bao nhieu Khach Hang
+            string check_dtkd = String.Format(@"select distinct dh.md_doitackinhdoanh_id
+			from c_dongdonhang ddh
+			left join c_donhang dh on dh.c_donhang_id = ddh.c_donhang_id
+			where N'{0}' like  N'%'+dh.c_donhang_id+'%'
+			order by dh.md_doitackinhdoanh_id asc
+			", c_donhang_id == null ? "" : c_donhang_id);
+            //--
+            DataTable dt_ck = mdbc.GetData(check_dtkd);
+            if (dt_ck.Rows.Count > 1)
+            {
+                Response.Write("<h3>Đơn hàng không cùng Khách hàng</h3>");
+            }
+            else
+            {
+                decimal total_all = 0;
+                string[] c_id = c_donhang_id.Split(',');
+                for (int i = 0; i < c_id.Count(); i++)
+                {
+                    var pTang = (from p in db.c_phidonhangs where p.c_donhang_id.Equals(c_id[i]) && p.phitang.Equals(true) select p.phi).Sum();
+                    var pGiam = (from p in db.c_phidonhangs where p.c_donhang_id.Equals(c_id[i]) && p.phitang.Equals(false) select p.phi).Sum();
+
+                    decimal tang, giam;
+                    tang = pTang == null ? 0 : pTang.Value;
+                    giam = pGiam == null ? 0 : pGiam.Value;
+
+                    decimal total = (decimal)mdbc.ExecuteScalar("select totalamount from c_donhang where c_donhang_id = @c_donhang_id", "@c_donhang_id", c_id[i]);
+                    total = total + tang - giam;
+                    total_all += total;
+                }
+
+
+                String totalWord = MoneyToWord.ConvertMoneyToText(String.Format("{0:#.00}", total_all)).Replace("Dollars", "").Replace("Cents", "").Replace("Cent", "");
+                int j = totalWord.LastIndexOf("and");
+
+                if ((j > 0) && (int.Parse(String.Format("{0:#.00}", total_all).Split('.')[1]) > 0))
+                {
+                    totalWord = totalWord.Insert(totalWord.Length, "cents");
+                }
+
+                //-- Lay sochungtu
+                string soct_th = "";
+                string count_sct = String.Format(@"select distinct dh.sochungtu
+				from c_dongdonhang ddh
+				left join c_donhang dh on dh.c_donhang_id = ddh.c_donhang_id
+				where N'{0}' like  N'%'+dh.c_donhang_id+'%'
+				order by dh.sochungtu asc
+				", c_donhang_id == null ? "" : c_donhang_id);
+                DataTable dt_ct = mdbc.GetData(count_sct);
+                for (int i = 0; i < dt_ct.Rows.Count; i++)
+                {
+                    if (soct_th == "")
+                        soct_th = "AS PER PROFORMA INVOICE NO.: " + dt_ct.Rows[i][0];
+                    else
+                        soct_th += ", " + dt_ct.Rows[i][0];
+                }
+
+                //-- Lay chungloai
+                string cl_th = "";
+                string count_cl = String.Format(@"select distinct cl.ta_ngan
+				from c_dongdonhang ddh
+				left join md_sanpham sp on sp.md_sanpham_id = ddh.md_sanpham_id
+				left join md_chungloai cl on cl.md_chungloai_id = sp.md_chungloai_id
+				left join c_donhang dh on dh.c_donhang_id = ddh.c_donhang_id
+				where N'{0}' like  N'%'+dh.c_donhang_id+'%'
+				order by cl.ta_ngan asc
+				", c_donhang_id == null ? "" : c_donhang_id);
+                DataTable dt_cl = mdbc.GetData(count_cl);
+                for (int i = 0; i < dt_cl.Rows.Count; i++)
+                {
+                    if (cl_th == "")
+                        cl_th = "" + dt_cl.Rows[i][0];
+                    else
+                        cl_th += ", " + dt_cl.Rows[i][0];
+                }
+
+                String select = String.Format(@"SELECT *, CASE
+					WHEN B.sl_inner = 0
+					THEN B.n_w_inner + B.t_thung_outer
+
+					WHEN B.dvt_inner like N'%ctn%' and B.dvt_outer like N'%ctn%'
+					THEN B.n_w_outer + B.t_thung_outer
+
+					WHEN B.dvt_inner like N'%ctn%' and B.dvt_outer like N'%pal%'
+					THEN B.g_w_inner + 20
+
+					WHEN B.dvt_inner like N'%ctn%' and B.dvt_outer like N'%crt%'
+					THEN B.g_w_inner + 5
+
+					WHEN B.dvt_inner like N'%bun%' and B.dvt_outer like N'%crt%'
+					THEN B.g_w_inner + 5
+
+					WHEN B.dvt_inner like N'%bun%' and B.dvt_outer like N'%pal%'
+					THEN B.g_w_inner + 20
+
+					WHEN B.sl_inner = 0 and B.dvt_outer like N'%pal%'
+					THEN B.g_w_inner + 25
+
+					ELSE 0 END as g_w_outer
+				FROM
+				(SELECT *,
+				CASE
+				WHEN A.dvt_inner like N'%bun%'
+				THEN A.n_w_inner + 0.5
+				WHEN A.dvt_inner like N'%crt%'  
+				THEN A.n_w_inner + 3
+				WHEN A.dvt_inner like N'%ctn%'  
+				THEN A.n_w_inner + t_thung_inner
+				ELSE 0 END as g_w_inner
+				FROM (select
+				GETDATE() as ngaylap
+				, dh.sochungtu
+				, dtkd.ten_dtkd
+				, dtkd.diachi
+				, dtkd.tel
+				, dtkd.fax 
+				, dh.portdischarge as cang_n
+				, cx.ten_cangbien as cang_x
+				, dh.shipmenttime
+				, pmt.ten_paymentterm
+				, sp.ma_sanpham
+				, sp.mota_tiengviet
+				, sp.mota_tienganh
+				, hs.hscode
+				, ddh.soluong
+				, ddh.giafob
+				, dh.totalcbm
+				, dh.discount
+				, trl.ten_trongluong
+				, dg.sl_outer
+				, dg.sl_inner
+				, dvt_outer.ten_dvt as dvt_outer
+				, dvt_inner.ten_dvt as dvt_inner
+				, dvt.ten_dvt
+				, ddh.l1, ddh.w1, ddh.h1
+				, ddh.l2, ddh.w2, ddh.h2, ddh.v2
+				, case when dh.md_trongluong_id is not null then dg.sl_outer * (SELECT dbo.f_convertKgToPounds(sp.trongluong, dh.md_trongluong_id)) else 0 end as n_w_outer
+				, case when dh.md_trongluong_id is not null then dg.sl_inner * (SELECT dbo.f_convertKgToPounds(sp.trongluong, dh.md_trongluong_id)) else 0 end as n_w_inner
+				, (ddh.l2 + ddh.w2) * (ddh.w2 * ddh.h2) / 5400 as t_thung_outer
+				, (ddh.l1 + ddh.w1) * (ddh.w1 * ddh.h1) / 5400 as t_thung_inner
+				, '{1}' as money
+				, '{2}' as sochungtu_th
+				, '{3}' as chungloai_th
+				from c_dongdonhang ddh
+				left join c_donhang dh on dh.c_donhang_id = ddh.c_donhang_id
+				left join md_sanpham sp on sp.md_sanpham_id = ddh.md_sanpham_id
+				left join md_hscode hs on hs.md_hscode_id = sp.md_hscode_id
+				left join md_doitackinhdoanh dtkd on dtkd.md_doitackinhdoanh_id = dh.md_doitackinhdoanh_id
+				left join md_paymentterm pmt on dh.md_paymentterm_id = pmt.md_paymentterm_id
+				left join md_cangbien cx on cx.md_cangbien_id = dh.md_cangbien_id
+				left join md_donggoi dg on dg.md_donggoi_id = ddh.md_donggoi_id
+				left join md_donvitinh dvt_outer on dvt_outer.md_donvitinh_id = dg.dvt_outer
+				left join md_donvitinh dvt_inner on dvt_inner.md_donvitinh_id = dg.dvt_inner
+				left join md_donvitinhsanpham dvt on dvt.md_donvitinhsanpham_id = sp.md_donvitinhsanpham_id
+				left join md_trongluong trl on trl.md_trongluong_id = dh.md_trongluong_id
+				where N'{0}' like  N'%'+dh.c_donhang_id+'%'
+				union
+				select null as ngaylap
+				, '9999' as sochungtu
+				, null as ten_dtkd
+				, null as diachi
+				, null as tel
+				, null as fax 
+				, null as cang_n
+				, null as cang_x
+				, null as shipmenttime
+				, null as ten_paymentterm
+				, null as ma_sanpham
+				, null as mota_tiengviet
+				, null as mota_tienganh
+				, null as hscode
+				, null as soluong
+				, null as giafob
+				, null as totalcbm
+				, null as discount
+				, null as ten_trongluong
+				, null as sl_outer
+				, null as sl_inner
+				, null as dvt_outer
+				, null as dvt_inner
+				, null as ten_dvt
+				, null as l1, null as w1, null as h1
+				, null as l2, null as w2, null as h2, null as v2
+				, null as n_w_outer
+				, null as n_w_inner
+				, null as t_thung_outer
+				, null as t_thung_inner
+				, null as money
+				, null as sochungtu_th
+				, null as chungloai_th
+				)A)B order by B.sochungtu asc, B.ma_sanpham asc
+				", c_donhang_id == null ? "" : c_donhang_id, totalWord, soct_th, cl_th.ToUpper());
+
+                DataTable dt = mdbc.GetData(select);
+                if (dt.Rows.Count != 0)
+                {
+                    HSSFWorkbook hssfworkbook = this.CreateWorkBookPO(dt);
+                    String saveAsFileName = String.Format("PackingList-{0}.xls", DateTime.Now);
+                    this.SaveFile(hssfworkbook, saveAsFileName);
+                }
+                else
+                {
+                    Response.Write("<h3>Đơn hàng không có dữ liệu</h3>");
+                }
+            }
+        }
+        //catch (Exception ex)
+        {
+            //Response.Write(String.Format("<h3>Quá trình chiếc xuất xảy ra lỗi {0}</h3>", ex.Message));
+        }
+    }
+
+    public HSSFWorkbook CreateWorkBookPO(DataTable dt)
+    {
+        HSSFWorkbook hssfworkbook = new HSSFWorkbook();
+        ISheet s1 = hssfworkbook.CreateSheet("Sheet1");
+        HSSFSheet hssfsheet = (HSSFSheet)s1;
+
+        Excel_Format ex_fm = new Excel_Format(hssfworkbook);
+        ICellStyle cellBold = ex_fm.getcell(12, true, true, "", "L", "T");
+        //-- 
+        ICellStyle cellHeader = ex_fm.getcell(18, true, true, "", "C", "T");
+        //-- 
+        ICellStyle cellHeader_n = ex_fm.getcell(12, false, true, "", "C", "T");
+        //--
+        ICellStyle celltext = ex_fm.getcell(12, false, true, "", "L", "T");
+        //--
+        ICellStyle rightBold = ex_fm.getcell(12, true, false, "", "R", "T");
+        //--
+        ICellStyle right = ex_fm.getcell(12, false, false, "", "R", "T");
+        //--
+        ICellStyle leftBold = ex_fm.getcell(12, true, false, "", "L", "T");
+        //--
+        ICellStyle left = ex_fm.getcell(12, false, false, "", "L", "T");
+        //--
+        ICellStyle border = ex_fm.getcell(12, false, true, "LRBT", "L", "T");
+        //--
+        ICellStyle borderright = ex_fm.getcell(12, false, true, "LRBT", "R", "T");
+        //--
+        ICellStyle borderonlyleft = ex_fm.getcell(12, false, true, "L", "T", "T");
+        //--
+        ICellStyle borderWrap = ex_fm.getcell(12, true, true, "LRBT", "C", "T");
+        //--
+        ICellStyle signBold = ex_fm.getcell(12, true, true, "", "C", "C");
+        //--
+        int heigh = 22;
+        int row = 0;
+        //set A1 - A3
+        string[] a = { "ANCO COMPANY LIMITED", "3B/2, 1B Hamlet, An Phu Ward, Thuan An Dist., Binh Duong Province, Vietnam", "Tel.: (84-274) 3740 973   Fax:  (84-274) 3740 621  Email: anco@ancopottery.com", "PACKING LIST" };
+        for (int i = 0; i < a.Count(); i++)
+        {
+            s1.CreateRow(row).CreateCell(0).SetCellValue(a[i]);
+            s1.AddMergedRegion(new CellRangeAddress(row, row, 0, 7));
+            s1.GetRow(row).HeightInPoints = heigh;
+            if (i == 0 | i == 3)
+            {
+                s1.GetRow(row).HeightInPoints = 30;
+                s1.GetRow(row).GetCell(0).CellStyle = cellHeader;
+            }
+            else
+            {
+                s1.GetRow(row).GetCell(0).CellStyle = cellHeader_n;
+            }
+            row++;
+        }
+        //--
+
+        //set F4 - F5
+        string[] b = { "No.:", "Date:" };
+        string[] b_value = { "", "ngaylap" };
+        for (int i = 0; i < b.Count(); i++)
+        {
+            s1.CreateRow(row).CreateCell(4).SetCellValue(b[i]);
+            s1.GetRow(row).GetCell(4).CellStyle = cellBold;
+            s1.AddMergedRegion(new CellRangeAddress(row, row, 5, 7));
+
+            if (i == 1)
+                s1.GetRow(row).CreateCell(5).SetCellValue(DateTime.Parse(dt.Rows[0][b_value[i]].ToString()).ToString("dd/MM/yyyy"));
+            else if (b_value[i] != "")
+                s1.GetRow(row).CreateCell(5).SetCellValue(dt.Rows[0][b_value[i]].ToString());
+            else
+                s1.GetRow(row).CreateCell(5).SetCellValue("");
+            s1.GetRow(row).GetCell(4).CellStyle = cellBold;
+            s1.GetRow(row).GetCell(5).CellStyle = cellBold;
+            s1.GetRow(row).HeightInPoints = heigh;
+            row++;
+        }
+
+        //set A6 - A12
+        string[] c = { "The Buyer:", "M/V:", "From:", "To:", "B/L No.:", "Commodity:", " " };
+        string[] c_value = { "", "", "cang_x", "cang_n", "", "chungloai_th", "sochungtu_th" };
+        for (int i = 0; i < c.Count(); i++)
+        {
+            string rich_text = " {0} \n {1} \n Tel:{2} \n Fax{3}";
+            heigh = 22;
+            string v_l = c[i];
+            if (i == 0)
+            {
+                heigh = 95;
+                v_l = rich_text;
+            }
+            else if (i == 6 | i == 5)
+            {
+                heigh = 40;
+            }
+            s1.CreateRow(row).CreateCell(0).SetCellValue(c[i]);
+            HSSFRichTextString rich = new HSSFRichTextString(String.Format(rich_text, dt.Rows[0]["ten_dtkd"].ToString(), dt.Rows[0]["diachi"].ToString(), dt.Rows[0]["tel"].ToString(), dt.Rows[0]["fax"].ToString()));
+            if (i == 0)
+                s1.GetRow(row).CreateCell(2).SetCellValue(rich);
+            else if (c_value[i] != "")
+                s1.GetRow(row).CreateCell(2).SetCellValue(dt.Rows[0][c_value[i]].ToString());
+            else
+                s1.GetRow(row).CreateCell(2).SetCellValue("");
+            //--
+            if (i == 0)
+                s1.GetRow(row).GetCell(2).CellStyle = cellBold;
+            else
+                s1.GetRow(row).GetCell(2).CellStyle = celltext;
+            //--
+            s1.GetRow(row).GetCell(0).CellStyle = celltext;
+            //--
+            s1.AddMergedRegion(new CellRangeAddress(row, row, 2, 7));
+
+            s1.GetRow(row).HeightInPoints = heigh;
+            row++;
+        }
+
+        // set A13 - All
+        // -- Header
+        int cell = 0;
+        string[] d = { "Seller's Article", "Buyer's Article", "Description of goods", "Packing", "", "No. of pkgs", "Quantity (pcs,sets)", "", "NW(kgs)", "GW(kgs)", "CBM", "L2", "W2", "H2", "HS code" };
+        IRow rowColumnHeader = s1.CreateRow(row);
+        rowColumnHeader.HeightInPoints = 47;
+        for (int i = 0; i < d.Count(); i++)
+        {
+            int with = 5000;
+            rowColumnHeader.CreateCell(cell).SetCellValue(d[i]);
+            rowColumnHeader.GetCell(i).CellStyle = borderWrap;
+            if (i == 2)
+                with = 7000;
+            else if (i > 7)
+                with = 0;
+            s1.SetColumnWidth(cell, with);
+            cell++;
+        }
+        s1.AddMergedRegion(new CellRangeAddress(row, row, 3, 4));
+        s1.AddMergedRegion(new CellRangeAddress(row, row, 6, 7));
+        row++;
+        // -- Details
+        // create column
+        string sochungtu = "", row_value = "";
+        //thu tu tong cong // dem so dong hang cua tung sochungtu
+        int count_total = 1, count_row = 0, count_row_tt = 1;
+        // tap hop so luong dong tong cong // tap hop cac vi tri cua tong cong
+        string n_total = "", l_total = "", l_cbm = "";
+        // create detail row
+        for (int i = 0; i < dt.Rows.Count; i++)
+        {
+            if (i == 0) //ke dong sochungtu dau tien
+            {
+                if (dt.Rows[i]["sochungtu"].ToString() != sochungtu)
+                {
+                    s1.CreateRow(row).CreateCell(0).SetCellValue("Container/Seal No.: ");
+                    //s1.GetRow(row).CreateCell(4).SetCellValue("FOB " + dt.Rows[i]["cang_x"].ToString());
+                    CellRangeAddress cellRange014 = new CellRangeAddress(row, row, 0, 14);
+                    //CellRangeAddress cellRange46 = new CellRangeAddress(row, row, 4, 6);
+                    s1.AddMergedRegion(cellRange014);
+                    //s1.AddMergedRegion(cellRange46);
+                    s1.GetRow(row).GetCell(0).CellStyle = leftBold;
+                    //s1.GetRow(row).GetCell(4).CellStyle = borderWrap;
+                    s1.GetRow(row).CreateCell(15).CellStyle = borderonlyleft;
+                    s1.GetRow(row).HeightInPoints = 22;
+                    ex_fm.set_border(cellRange014, "LRTB", hssfsheet);
+                    //ex_fm.set_border(cellRange46, "LRTB", hssfsheet);
+                    //--
+                    row++;
+                    //--
+                    s1.CreateRow(row).CreateCell(0).SetCellValue("P/I No. " + dt.Rows[i]["sochungtu"].ToString());
+                    cellRange014 = new CellRangeAddress(row, row, 0, 14);
+                    //cellRange46 = new CellRangeAddress(row, row, 4, 6);
+                    s1.AddMergedRegion(cellRange014);
+                    //s1.AddMergedRegion(cellRange46);
+                    s1.GetRow(row).GetCell(0).CellStyle = leftBold;
+                    s1.GetRow(row).CreateCell(15).CellStyle = borderonlyleft;
+                    s1.GetRow(row).HeightInPoints = 22;
+                    sochungtu = dt.Rows[i]["sochungtu"].ToString();
+                    ex_fm.set_border(cellRange014, "LRTB", hssfsheet);
+                    //ex_fm.set_border(cellRange46, "LRTB", hssfsheet);
+                    row++;
+                }
+            }
+            else //ke dong sochungtu tiep theo
+            {
+                if (dt.Rows[i]["sochungtu"].ToString() != dt.Rows[i - 1]["sochungtu"].ToString())
+                {
+                    //tap hop row tong cong 
+                    n_total += count_total + " + ";
+                    //vi tri row dau tien
+                    int m = row - count_row + 1;
+                    //start tong cong 1
+                    s1.CreateRow(row).CreateCell(2).SetCellValue("Total(" + count_total + "):");
+                    s1.GetRow(row).CreateCell(5).CellFormula = String.Format("SUM(F{0}:F{1})", m, row);
+                    s1.GetRow(row).CreateCell(6).CellFormula = String.Format("SUM(G{0}:G{1})", m, row);
+                    s1.GetRow(row).CreateCell(7).SetCellValue("");
+                    s1.GetRow(row).CreateCell(8).CellFormula = String.Format("SUM(I{0}:I{1})", m, row);
+                    s1.GetRow(row).CreateCell(9).CellFormula = String.Format("SUM(J{0}:J{1})", m, row);
+                    s1.GetRow(row).CreateCell(10).CellFormula = String.Format("SUM(K{0}:K{1})", m, row);
+                    // style
+                    s1.GetRow(row).GetCell(2).CellStyle = leftBold;
+                    s1.GetRow(row).GetCell(5).CellStyle = rightBold;
+                    s1.GetRow(row).GetCell(6).CellStyle = rightBold;
+                    s1.GetRow(row).GetCell(7).CellStyle = rightBold;
+                    s1.GetRow(row).GetCell(8).CellStyle = rightBold;
+                    s1.GetRow(row).GetCell(9).CellStyle = rightBold;
+                    s1.GetRow(row).GetCell(10).CellStyle = rightBold;
+                    for (int nht = 8; nht <= 10; nht++)
+                    {
+                        s1.GetRow(row).GetCell(nht).CellStyle.DataFormat = CellDataFormat.GetDataFormat(hssfworkbook, "#,##0.00");
+                    }
+                    //s1.GetRow(row).HeightInPoints = 0;
+                    l_total += (row + 1) + ",";
+                    row++;
+                    l_cbm += row + ",";
+                    //end
+
+                    // ke dong sochungtu
+                    if (dt.Rows[i]["sochungtu"].ToString() != "9999")
+                    {
+                        s1.CreateRow(row).CreateCell(0).SetCellValue("Container/Seal No.: ");
+                        //s1.GetRow(row).CreateCell(4).SetCellValue("FOB " + dt.Rows[i]["cang_x"].ToString());
+                        CellRangeAddress cellRange014 = new CellRangeAddress(row, row, 0, 14);
+                        //CellRangeAddress cellRange46 = new CellRangeAddress(row, row, 4, 6);
+                        s1.AddMergedRegion(cellRange014);
+                        //s1.AddMergedRegion(cellRange46);
+                        s1.GetRow(row).GetCell(0).CellStyle = leftBold;
+                        //s1.GetRow(row).GetCell(4).CellStyle = borderWrap;
+                        s1.GetRow(row).CreateCell(15).CellStyle = borderonlyleft;
+                        s1.GetRow(row).HeightInPoints = 22;
+                        ex_fm.set_border(cellRange014, "LRTB", hssfsheet);
+                        //ex_fm.set_border(cellRange46, "LRTB", hssfsheet);
+                        //--
+                        row++;
+                        //--
+                        s1.CreateRow(row).CreateCell(0).SetCellValue("P/I No. " + dt.Rows[i]["sochungtu"].ToString());
+                        cellRange014 = new CellRangeAddress(row, row, 0, 14);
+                        //cellRange46 = new CellRangeAddress(row, row, 4, 6);
+                        s1.AddMergedRegion(cellRange014);
+                        //s1.AddMergedRegion(cellRange46);
+                        s1.GetRow(row).GetCell(0).CellStyle = leftBold;
+                        s1.GetRow(row).CreateCell(15).CellStyle = borderonlyleft;
+                        s1.GetRow(row).HeightInPoints = 22;
+                        sochungtu = dt.Rows[i]["sochungtu"].ToString();
+                        ex_fm.set_border(cellRange014, "LRTB", hssfsheet);
+                        //ex_fm.set_border(cellRange46, "LRTB", hssfsheet);
+                    }
+                    count_total++;
+                    row++;
+                    count_row = 0;
+                    sochungtu = dt.Rows[i]["sochungtu"].ToString();
+                }
+            }
+            string[] e_value = { "ma_sanpham", "", "mota_tienganh", "sl_outer", "dvt_outer", "", "soluong", "ten_dvt", "n_w_outer", "g_w_outer", "totalcbm", "l2", "w2", "h2", "hscode" };
+            if (dt.Rows[i]["sochungtu"].ToString() != "9999")
+            {
+                IRow row_t = s1.CreateRow(row); row_t.HeightInPoints = 60;
+                //
+                int cell_t = 0;
+                for (int j = 0; j < e_value.Count(); j++)
+                {
+                    if (j == 3 | j == 6 | j == 8 | j == 9 | j == 10 | j == 11 | j == 12 | j == 13)
+                        row_t.CreateCell(cell_t).SetCellValue(double.Parse(dt.Rows[i][e_value[j]].ToString()));
+                    else if (j == 5)
+                        row_t.CreateCell(5).CellFormula = String.Format("G{0}/D{0}", row + 1);
+                    else if (e_value[j] == "")
+                        row_t.CreateCell(cell_t).SetCellValue("");
+                    else
+                        row_t.CreateCell(cell_t).SetCellValue(dt.Rows[i][e_value[j]].ToString()); ;
+                    cell_t++;
+                }
+
+                try
+                {
+                    for (int n = 0; n <= cell_t + 1; n++)
+                    {
+                        //  table style
+                        row_t.GetCell(n).CellStyle.WrapText = true;
+                        row_t.GetCell(n).CellStyle = border;
+                    }
+                }
+                catch { }
+                s1.GetRow(row).GetCell(3).CellStyle = borderright;
+                s1.GetRow(row).GetCell(5).CellStyle = borderright;
+                s1.GetRow(row).GetCell(6).CellStyle = borderright;
+                for (int nht = 8; nht <= 13; nht++)
+                {
+                    s1.GetRow(row).GetCell(nht).CellStyle.DataFormat = CellDataFormat.GetDataFormat(hssfworkbook, "#,##0.00");
+                }
+                row++;
+                count_row++;
+                count_row_tt++;
+            }
+        }
+        //tru so dong du
+        row--;
+        // tap hop 
+        string numbel_total = n_total.Substring(0, n_total.Length - 3), get_locate_sokien = "", get_locate_soluong = "", get_locate_thanhtien = "", get_locate_cbm = "", get_locate_nw = "", get_locate_gw = "";
+        string[] locate_total = l_total.Split(',');
+        string[] locate_cbm = l_cbm.Split(',');
+        for (int i = 0; i < locate_total.Count() - 1; i++)
+        {
+            get_locate_sokien += "F" + locate_total[i] + "+";
+            get_locate_soluong += "G" + locate_total[i] + "+";
+            get_locate_cbm += "K" + locate_cbm[i] + "+";
+            get_locate_nw += "I" + locate_cbm[i] + "+";
+            get_locate_gw += "J" + locate_cbm[i] + "+";
+        }
+        //
+        string new_get_locate_soluong = get_locate_soluong.Substring(0, get_locate_soluong.Length - 1);
+        string new_get_locate_sokien = get_locate_sokien.Substring(0, get_locate_sokien.Length - 1);
+        //
+        string new_get_locate_cbm = get_locate_cbm.Substring(0, get_locate_cbm.Length - 1);
+        string new_get_locate_nw = get_locate_nw.Substring(0, get_locate_nw.Length - 1);
+        string new_get_locate_gw = get_locate_gw.Substring(0, get_locate_gw.Length - 1);
+        //start tong cong total
+        s1.CreateRow(row).CreateCell(2).SetCellValue("Total(" + numbel_total + "):");
+        s1.GetRow(row).CreateCell(5).CellFormula = String.Format(new_get_locate_sokien);
+        s1.GetRow(row).CreateCell(6).CellFormula = String.Format(new_get_locate_soluong);
+        s1.GetRow(row).CreateCell(8).CellFormula = String.Format(new_get_locate_nw);
+        s1.GetRow(row).CreateCell(9).CellFormula = String.Format(new_get_locate_gw);
+        s1.GetRow(row).CreateCell(10).CellFormula = String.Format(new_get_locate_cbm);
+        // style
+        s1.GetRow(row).GetCell(2).CellStyle = leftBold;
+        s1.GetRow(row).GetCell(5).CellStyle = rightBold;
+        s1.GetRow(row).GetCell(6).CellStyle = rightBold;
+        for (int i = 8; i <= 10; i++)
+        {
+            s1.GetRow(row).GetCell(i).CellStyle = rightBold;
+            s1.GetRow(row).GetCell(i).CellStyle.DataFormat = CellDataFormat.GetDataFormat(hssfworkbook, "#,##0.00");
+        }
+        s1.GetRow(row).HeightInPoints = 22;
+        row++;
+        //end
+
+        //set A6 - A12
+        //set final
+        int row_g_total = row;
+        string[] f = { "Gross weight:", "Measurement:" };
+        string[] f_value = { "J", "K" };
+        string[] f_3 = { "kgs", "cbm" };
+        for (int i = 0; i < f.Count(); i++)
+        {
+            s1.CreateRow(row).CreateCell(0).SetCellValue(f[i]);
+            s1.GetRow(row).CreateCell(1).CellFormula = String.Format(f_value[i] + row_g_total);
+            s1.GetRow(row).CreateCell(2).SetCellValue(f_3[i]);
+            if (f_3[i] == "")
+            {
+                s1.GetRow(row).CreateCell(2).SetCellValue(dt.Rows[0]["ten_trongluong"].ToString());
+            }
+            try
+            {
+                s1.GetRow(row).GetCell(0).CellStyle = celltext;
+                s1.GetRow(row).GetCell(1).CellStyle = right;
+                s1.GetRow(row).GetCell(2).CellStyle = celltext;
+            }
+            catch { }
+            row++;
+        }
+
+        s1.CreateRow(row).CreateCell(3).SetCellValue("ANCO COMPANY LTD");
+        s1.GetRow(row).GetCell(3).CellStyle = signBold;
+        s1.GetRow(row).HeightInPoints = 22;
+        s1.AddMergedRegion(new CellRangeAddress(row, row, 3, 6));
+        row++;
+
+        #region Format Print Excel
+
+        s1.PrintSetup.PaperSize = (short)PaperSize.A4;
+        s1.FitToPage = true;
+        s1.PrintSetup.FitWidth = 1;
+        s1.PrintSetup.FitHeight = 0;
+        s1.SetMargin(MarginType.TopMargin, 0.75);
+        s1.SetMargin(MarginType.BottomMargin, 0.75);
+        s1.SetMargin(MarginType.LeftMargin, 0.23);
+        s1.SetMargin(MarginType.RightMargin, 0.23);
+        s1.SetMargin(MarginType.HeaderMargin, 0.31);
+        s1.SetMargin(MarginType.FooterMargin, 0.31);
+        hssfworkbook.SetPrintArea(
+            hssfworkbook.GetSheetIndex(s1.SheetName), //sheet index
+            0, //start column
+            7, //end column
+            0, //start row
+            row + 1
+        );
+        #endregion
+
+        return hssfworkbook;
+    }
+
+    public void SaveFile(HSSFWorkbook hsswb, String saveAsFileName)
+    {
+        MemoryStream exportData = new MemoryStream();
+        hsswb.Write(exportData);
+
+        Response.ContentType = "application/vnd.ms-excel";
+        Response.AddHeader("Content-Disposition", string.Format("attachment;filename={0}", saveAsFileName));
+        Response.Clear();
+        Response.BinaryWrite(exportData.GetBuffer());
+        Response.End();
+    }
+}

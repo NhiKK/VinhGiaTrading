@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections;
+using System.Configuration;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Xml.Linq;
+
+public partial class cbm_kyketoan : System.Web.UI.UserControl
+{
+    public string Name = null;
+    public string Value = null;
+    public bool Disabled = false;
+    public string OnChange = null;
+    public bool NullFirstItem = false;
+    public int Width = -1;
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        Response.Cache.SetCacheability(HttpCacheability.NoCache);
+    }
+}

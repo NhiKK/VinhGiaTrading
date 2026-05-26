@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="anco_test_importConnectionString">
+      <rd:DataSourceID>e95e6c18-b5e9-4efd-87be-667106d1ded3</rd:DataSourceID>
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+    </DataSource>
+  </DataSources>
+  <InteractiveHeight>11in</InteractiveHeight>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>8.5in</InteractiveWidth>
+  <rd:SnapToGrid>true</rd:SnapToGrid>
+  <RightMargin>0.1in</RightMargin>
+  <LeftMargin>0.1in</LeftMargin>
+  <BottomMargin>0.1in</BottomMargin>
+  <rd:ReportID>9d89190e-2ad0-49f1-96bf-7074278d3075</rd:ReportID>
+  <PageWidth>11in</PageWidth>
+  <DataSets>
+    <DataSet Name="anco_test_importDataSet_rpt_trangnoidungcatalog">
+      <Fields>
+        <Field Name="hehang">
+          <DataField>hehang</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="hinh1">
+          <DataField>hinh1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="hinh2">
+          <DataField>hinh2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="hinh3">
+          <DataField>hinh3</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="hinh4">
+          <DataField>hinh4</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="mota1">
+          <DataField>mota1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="mota2">
+          <DataField>mota2</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="mota3">
+          <DataField>mota3</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="mota4">
+          <DataField>mota4</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>anco_test_importConnectionString</DataSourceName>
+        <CommandType>StoredProcedure</CommandType>
+        <CommandText>anco.rpt_trangnoidungcatalog</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <rd:DataSetInfo>
+        <rd:DataSetName>anco_test_importDataSet</rd:DataSetName>
+        <rd:TableName>rpt_trangnoidungcatalog</rd:TableName>
+        <rd:TableAdapterName>rpt_trangnoidungcatalogTableAdapter</rd:TableAdapterName>
+        <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
+        <rd:TableAdapterGetDataMethod>rpt_trangnoidungcatalog</rd:TableAdapterGetDataMethod>
+      </rd:DataSetInfo>
+    </DataSet>
+  </DataSets>
+  <Code />
+  <Width>10.5in</Width>
+  <Body>
+    <ReportItems>
+      <Image Name="image5">
+        <Sizing>AutoSize</Sizing>
+        <Top>0.125in</Top>
+        <Width>1.2in</Width>
+        <Source>External</Source>
+        <Style />
+        <ZIndex>7</ZIndex>
+        <Left>0.25in</Left>
+        <Height>0.7in</Height>
+        <Value>="file://" &amp; System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, "images/catalogue/logo.jpg")</Value>
+      </Image>
+      <Textbox Name="textbox2">
+        <Top>4.125in</Top>
+        <Width>2.5in</Width>
+        <Style>
+          <Color>DimGray</Color>
+          <FontFamily>Times New Roman</FontFamily>
+          <FontSize>9pt</FontSize>
+          <VerticalAlign>Bottom</VerticalAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+        </Style>
+        <ZIndex>6</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>7.375in</Left>
+        <Height>3.625in</Height>
+        <Value>=Replace(Fields!mota3.Value,”|”,vbCrLf)</Value>
+      </Textbox>
+      <Image Name="image2">
+        <Sizing>Fit</Sizing>
+        <Top>1.125in</Top>
+        <Width>2.75in</Width>
+        <Source>External</Source>
+        <Style />
+        <ZIndex>5</ZIndex>
+        <Left>7.25in</Left>
+        <Height>2.75in</Height>
+        <Value>="file://" &amp; System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, Fields!hinh3.Value)</Value>
+      </Image>
+      <Textbox Name="textbox5">
+        <rd:DefaultName>textbox5</rd:DefaultName>
+        <Top>0.125in</Top>
+        <Width>7.5in</Width>
+        <Style>
+          <Color>DimGray</Color>
+          <FontSize>18pt</FontSize>
+          <FontWeight>700</FontWeight>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>4</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>1.625in</Left>
+        <Height>0.375in</Height>
+        <Value>=UCase(Fields!hehang.Value)</Value>
+      </Textbox>
+      <Textbox Name="textbox3">
+        <Top>4.125in</Top>
+        <Width>2.5in</Width>
+        <Style>
+          <Color>DimGray</Color>
+          <FontFamily>Times New Roman</FontFamily>
+          <FontSize>9pt</FontSize>
+          <VerticalAlign>Bottom</VerticalAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+        </Style>
+        <ZIndex>3</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>3.875in</Left>
+        <Height>3.625in</Height>
+        <Value>=Replace(Fields!mota2.Value,”|”,vbCrLf)</Value>
+      </Textbox>
+      <Textbox Name="textbox1">
+        <rd:DefaultName>textbox1</rd:DefaultName>
+        <Top>4.125in</Top>
+        <Width>2.5in</Width>
+        <Style>
+          <Color>DimGray</Color>
+          <FontFamily>Times New Roman</FontFamily>
+          <FontSize>9pt</FontSize>
+          <VerticalAlign>Bottom</VerticalAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+        </Style>
+        <ZIndex>2</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.375in</Left>
+        <Height>3.625in</Height>
+        <Value>=Replace(Fields!mota1.Value,”|”,vbCrLf)</Value>
+      </Textbox>
+      <Image Name="image3">
+        <Sizing>Fit</Sizing>
+        <Top>1.125in</Top>
+        <Width>2.75in</Width>
+        <Source>External</Source>
+        <Style />
+        <ZIndex>1</ZIndex>
+        <Left>3.75in</Left>
+        <Height>2.875in</Height>
+        <Value>="file://" &amp; System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, Fields!hinh2.Value)</Value>
+      </Image>
+      <Image Name="image1">
+        <Sizing>Fit</Sizing>
+        <Top>1.125in</Top>
+        <Width>2.75in</Width>
+        <Source>External</Source>
+        <Style />
+        <Left>0.25in</Left>
+        <Height>2.875in</Height>
+        <Value>="file://" &amp; System.IO.Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, Fields!hinh1.Value)</Value>
+      </Image>
+    </ReportItems>
+    <Height>8in</Height>
+  </Body>
+  <Language>en-US</Language>
+  <TopMargin>0.1in</TopMargin>
+  <PageHeight>8.5in</PageHeight>
+</Report>

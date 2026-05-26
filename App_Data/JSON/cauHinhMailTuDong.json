@@ -1,0 +1,16 @@
+[
+  {
+    "mauin": "Báo cáo INV chậm thanh toán",
+    "laplai": "MW",
+    "ngayhl": "01/04/2023",
+    "giohl": "9",
+    "ngaysk": "26/05/2025",
+    "tieude": "Các INV chậm thanh toán ([startDate] - [endDate])",
+    "noidung": "Khoảng thời gian: [startDate] - [endDate]\nXem tập tin đính kèm để biết thêm chi tiết",
+    "vaitro_nhanmail": "ad8231d6bb0dd7cfd27ea149603ff3ff",
+    "taptin": "PrintControllers/0BaoCaoKH/rpt_DanhSachInvoiceChamTT.aspx?startdate={0}&enddate={1}",
+    "email": "invoice@vinhgiapottery.com",
+    "pass": "ijalHtLf0s",
+    "smtp": "mail.vinhgiapottery.com"
+  }
+]

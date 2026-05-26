@@ -1,0 +1,12 @@
+D:\ANCO\Soft\WindowsService1\bin\Debug\WindowsService1.exe.config
+D:\ANCO\Soft\WindowsService1\bin\Debug\WindowsService1.exe
+D:\ANCO\Soft\WindowsService1\bin\Debug\WindowsService1.pdb
+D:\ANCO\Soft\WindowsService1\obj\Debug\WindowsService1.ProjectInstaller.resources
+D:\ANCO\Soft\WindowsService1\obj\Debug\WindowsService1.csproj.GenerateResource.cache
+D:\ANCO\Soft\WindowsService1\obj\Debug\WindowsService1.csproj.CoreCompileInputs.cache
+D:\ANCO\Soft\WindowsService1\obj\Debug\WindowsService1.exe
+D:\ANCO\Soft\WindowsService1\obj\Debug\WindowsService1.pdb
+D:\ANCO\Soft\WindowsService1\bin\Debug\newtonsoft.json.dll
+D:\ANCO\Soft\WindowsService1\bin\Debug\newtonsoft.json.xml
+D:\ANCO\Soft\WindowsService1\obj\Debug\WindowsService1.csproj.CopyComplete
+D:\ANCO\Soft\WindowsService1\obj\Debug\WindowsService1.csprojAssemblyReference.cache
