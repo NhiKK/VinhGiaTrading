@@ -140,13 +140,15 @@ public class DanhSachDatHangController : IHttpHandler
                             //ds email nhan
                             var emails = string.Join(",", nv_xn.Where(s => !string.IsNullOrEmpty(s.email)).Select(s => s.email));
                             var emailccs = string.Join(",", nv_xn.Where(s => !string.IsNullOrEmpty(s.email_cc)).Select(s => s.email_cc));
-
+                            
+                            //emailCC
+                            var emailCC = db.nhanviens.Where(p => p.manv == dsdh.nguoi_phutrach).Select(p =>p.email);
                             var mailObj = new Dictionary<string, object>();
                             mailObj["tieude"] = tieude;
                             mailObj["noidung"] = noidung;
                             mailObj["ma_dtkd"] = "";
                             mailObj["email"] = emails;
-                            mailObj["emailkt"] = emailccs;
+                            mailObj["emailkt"] = emailCC;
                             mailObj["dsdh"] = dsdh;
                             lstMail.Add(mailObj);
 
@@ -201,13 +203,13 @@ public class DanhSachDatHangController : IHttpHandler
             var fileDDHsKhongGia = taoFileDonDatHang(context, nv.manv, mailObj["ma_dtkd"].ToString(), dsdh, false);
             //string fileXNBB = taoFileXacNhanBaoBi(context, nv.manv, dsdh);
             string emailkt = mailObj["email"] + "";
-
+            string emailcc = mailObj["emailkt"] + "";
             if (!string.IsNullOrEmpty(emailkt))
             {
                 mail.Send(
                     nv.email
                     , emailkt
-                    , ""
+                    , emailcc
                     , ""
                     , mailObj["tieude"].ToString()
                     , mailObj["noidung"].ToString()
