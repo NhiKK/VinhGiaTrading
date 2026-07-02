@@ -102,6 +102,8 @@ public class DanhSachDatHangController : IHttpHandler
                         var nv = db.nhanviens.FirstOrDefault(p => p.manv.Equals(manv));
                         //email nhan
                         var nv_xn = db.nhanviens.Where(p => p.email_xn == true).ToList();
+                        //emailCC
+                        var nv_cc = db.nhanviens.Where(p => p.manv == dsdh.nguoi_phutrach).ToList();
                         if (nv_xn == null)
                         {
                             msg = string.Format(@"<div style='color:red'>Chưa có thông tin người xác nhận.</div>");
@@ -140,9 +142,8 @@ public class DanhSachDatHangController : IHttpHandler
                             //ds email nhan
                             var emails = string.Join(",", nv_xn.Where(s => !string.IsNullOrEmpty(s.email)).Select(s => s.email));
                             var emailccs = string.Join(",", nv_xn.Where(s => !string.IsNullOrEmpty(s.email_cc)).Select(s => s.email_cc));
-                            
-                            //emailCC
-                            var emailCC = db.nhanviens.Where(p => p.manv == dsdh.nguoi_phutrach).Select(p =>p.email);
+
+                            var emailCC = string.Join(",", nv_cc.Where(s => !string.IsNullOrEmpty(s.email)).Select(s => s.email));
                             var mailObj = new Dictionary<string, object>();
                             mailObj["tieude"] = tieude;
                             mailObj["noidung"] = noidung;
